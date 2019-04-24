@@ -6,8 +6,17 @@ namespace Windowless_Sample
 {
     public partial class App : Application
     {
-        private TaskbarIcon notifyIcon;
+        private static TaskbarIcon notifyIcon;
+        public static App GetApp;
+        public static string ipaddr;
+
         private System.Threading.Timer timer;
+
+        public App()
+        {
+            GetApp = this;
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -26,19 +35,26 @@ namespace Windowless_Sample
 
         private string GetIP()
         {
-            string[] a = new System.IO.StreamReader(System.Net.WebRequest.Create("http://checkip.dyndns.org").GetResponse().GetResponseStream()).ReadToEnd().Trim().Split(':');
-            string a2 = a[1].Substring(1);
-            string[] a3 = a2.Split('<');
-            return a3[0];
+            ipaddr = new System.IO.StreamReader(System.Net.WebRequest.Create("https://spitcin.ru/getip/").GetResponse().GetResponseStream()).ReadToEnd();
+            return ipaddr;
         }
 
-        private void OnTimedEvent(object state)
+        public void OnTimedEvent(object state)
         {
             Dispatcher.Invoke(new Action(() =>
             {
                 notifyIcon.ToolTipText = GetIP();
             }
             ));           
+        }
+
+        public void UpdateIP()
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                notifyIcon.ToolTipText = GetIP();
+            }
+            ));
         }
     }
 }

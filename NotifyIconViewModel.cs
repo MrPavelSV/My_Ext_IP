@@ -13,6 +13,14 @@ namespace Windowless_Sample
                 return new DelegateCommand {CommandAction = () => Application.Current.Shutdown()};
             }
         }
+
+        public ICommand GetIPCommand
+        {
+            get
+            {
+                return new DelegateCommand { CommandAction = () => App.GetApp.UpdateIP() };
+            }
+        }
     }
 
     public class DelegateCommand : ICommand

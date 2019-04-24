@@ -8,6 +8,5 @@
                 <ResourceDictionary Source="NotifyIconResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </Application.Resources>
 </Application>

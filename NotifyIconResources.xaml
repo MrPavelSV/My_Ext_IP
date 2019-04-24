@@ -4,12 +4,12 @@
                     xmlns:local="clr-namespace:Windowless_Sample">
 
     <ContextMenu x:Shared="false" x:Key="SysTrayMenu">
+        <MenuItem Header="Update" Command="{Binding GetIPCommand}" />
         <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
     </ContextMenu>
     <tb:TaskbarIcon x:Key="NotifyIcon"
                     IconSource="/Red.ico"
                     ToolTipText=""
-                    DoubleClickCommand="{Binding ShowWindowCommand}"
                     ContextMenu="{StaticResource SysTrayMenu}">
         <tb:TaskbarIcon.DataContext>
             <local:NotifyIconViewModel />
